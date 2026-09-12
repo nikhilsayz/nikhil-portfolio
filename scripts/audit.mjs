@@ -40,6 +40,10 @@ const probe = () => {
   document.querySelectorAll('a, button, input, textarea, select, [role="button"]').forEach((el) => {
     const cs = getComputedStyle(el);
     if (cs.display === 'none' || cs.visibility === 'hidden') return;
+    // never presented to a person: the spam honeypot, and anything hidden from
+    // assistive tech or pulled off-screen. Not a tap target, so not a finding.
+    if (cs.opacity === '0') return;
+    if (el.getAttribute('aria-hidden') === 'true' || el.tabIndex < 0) return;
     if (el.closest('[data-marquee], [data-footer-marq], [data-gallery]')) return;
     const r = el.getBoundingClientRect();
     if (r.width === 0 || r.height === 0) return;

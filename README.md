@@ -110,8 +110,7 @@ These are documented so they can be reverted knowingly.
    elements when the page is restored mid-scroll or entered on an anchor, which would
    leave a section stuck at `opacity: 0`.
 5. **Contact form actually sends.** The reference form was a prototype that only
-   flipped a label. It now composes a `mailto:` to nikhilkalimahanthi@gmail.com.
-   Swap in Formspree/Basin in `initContactForm()` if a server-side endpoint is wanted.
+   flipped a label on submit. It now posts to Formspree — see *Contact form* below.
 6. **The accent-dot cursor is gone.** The handoff's lime dot chased the pointer
    from JavaScript, which always trails. It is replaced by real CSS cursors — a
    mac-style arrow and pointing hand — which the OS composites, so there is no
@@ -144,11 +143,18 @@ site defect; verified against a real browser.
 
 ## Contact form
 
-The form composes a `mailto:` — there is no server. Known limitation: **`mailto:`
-fails silently when the visitor has no mail client registered**, which is the
-normal case on a machine that only uses webmail. The status line therefore always
-names the inbox address as a fallback, and messages over ~1900 URL characters are
-refused up front rather than handed to a client that may truncate them.
+Posts to Formspree — `FORM_ENDPOINT` in `scripts/build.mjs`. The endpoint is set
+as the form's real `action`/`method`, not only used from `fetch`, so the form
+still delivers with JavaScript disabled: the browser posts natively and Formspree
+renders its own confirmation page.
 
-For delivery that does not depend on the visitor's setup, point the form at
-Formspree, Basin or Vercel Forms in `initContactForm()` (public/app.js).
+With JS the submit is intercepted and posted by `fetch`, so the visitor stays on
+the page — the button disables and reads "Sending…", then "Sent", and the form
+clears. On failure the button re-enables, **what the visitor typed is preserved**,
+and the inbox address is offered, so a failure is never a dead end.
+
+`_gotcha` is Formspree's honeypot: hidden from people, filled in by bots,
+discarded server-side. `scripts/audit.mjs` skips it when checking tap-target
+sizes, along with anything `aria-hidden`, `tabindex="-1"` or at `opacity: 0`.
+
+To change the endpoint, edit `FORM_ENDPOINT` and rebuild.

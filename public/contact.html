@@ -160,7 +160,7 @@
       </div>
     </div>
 
-    <form data-on="submit:onSubmit" style="display: flex; flex-direction: column; gap: 18px; border: 1px solid var(--line); border-radius: 4px; padding: clamp(20px, 3vw, 40px); background: var(--surface);">
+    <form method="POST" action="https://formspree.io/f/mrpgvgav" data-on="submit:onSubmit" style="display: flex; flex-direction: column; gap: 18px; border: 1px solid var(--line); border-radius: 4px; padding: clamp(20px, 3vw, 40px); background: var(--surface);">
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 18px;">
         <label style="display: flex; flex-direction: column; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mut);">
           Name
@@ -179,7 +179,7 @@
         Message
         <textarea autocomplete="off" id="f-message" name="message" class="fv-0" rows="5" placeholder="A few lines is plenty." style="background: transparent; border: 1px solid var(--line); border-radius: 3px; color: var(--ink); font-size: 14px; padding: 12px; outline: none; resize: vertical; letter-spacing: 0.02em; line-height: 1.6;"></textarea>
       </label>
-      <button class="hv-1" type="submit" style="align-self: flex-start; padding: 15px 30px; border: none; border-radius: 999px; background: var(--acc); color: #0A0A0A; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; cursor: pointer;"><span data-bind="buttonLabel"></span></button>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" /><button class="hv-1" type="submit" style="align-self: flex-start; padding: 15px 30px; border: none; border-radius: 999px; background: var(--acc); color: #0A0A0A; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; cursor: pointer;"><span data-bind="buttonLabel"></span></button>
       <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; color: var(--mut); line-height: 1.7;"><span data-bind="statusNote"></span></div>
     </form>
   </section>

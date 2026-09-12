@@ -63,6 +63,10 @@ const SITE = 'https://nikhil-design.vercel.app';
 // version) keeps the id, and then nothing here needs to change at all.
 const RESUME = 'https://drive.google.com/file/d/12Xcnif-jiGb_rL7f9e71gKNghhMTj4G5/view?usp=sharing';
 
+// Formspree endpoint for the contact form. Set as the form's real action/method
+// too, not just used from fetch, so the form still delivers with JavaScript off.
+const FORM_ENDPOINT = 'https://formspree.io/f/mrpgvgav';
+
 // Written by scripts/cursors.mjs beside the PNGs, so the CSS hotspots can never
 // drift out of step with the artwork they belong to.
 const HOTSPOTS = JSON.parse(
@@ -178,6 +182,22 @@ function transform(page) {
       return addAttr(tag, 'data-page', '');
     });
     if (!tagged) throw new Error('no page wrapper found in ' + page.src);
+  }
+
+  // Wire the form to Formspree at the markup level. With JS the submit is
+  // intercepted and posted by fetch; without it, the browser posts natively to
+  // the same endpoint and Formspree renders its own confirmation — so the form
+  // works either way. `_gotcha` is Formspree's honeypot: hidden from people,
+  // filled in by bots, and silently discarded.
+  if (page.src === 'Contact.dc.html') {
+    body = body.replace(/<form\b[^>]*>/, (tag) => {
+      let t = addAttr(tag, 'action', FORM_ENDPOINT);
+      t = addAttr(t, 'method', 'POST');
+      return t;
+    });
+    body = body.replace(/<button[^>]*type="submit"/, (m) =>
+      '<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" ' +
+      'style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />' + m);
   }
 
   // contact form fields carry no name/autocomplete in the reference — add them

@@ -524,7 +524,7 @@
     }
 
     bind('buttonLabel', 'Send message');
-    bind('statusNote', 'Opens in your mail app with the message ready to send. Replies within a day.');
+    bind('statusNote', 'Goes straight to my inbox. I reply within a day.');
 
     // mark the fields this form actually requires, so the browser and assistive
     // tech agree with the check below
@@ -565,28 +565,46 @@
       }
       if (!message) return fail('message', 'Add a line or two about what you have in mind.');
 
-      var subject = topic ? topic + ' — ' + name : 'Portfolio enquiry — ' + name;
-      var body = [message, '', '— ' + name, email].join('\n');
-      var href = 'mailto:' + INBOX +
-        '?subject=' + encodeURIComponent(subject) +
-        '&body=' + encodeURIComponent(body);
-
-      // Some mail clients truncate or drop very long mailto URLs. Past a safe
-      // length, hand over the address instead of composing a mail that arrives
-      // cut in half.
-      if (href.length > 1900) {
-        bind('buttonLabel', 'Send message');
-        bind('statusNote', 'That is a long one — too long to hand to a mail app safely. ' +
-          'Please email it to ' + INBOX + ' directly, and thank you for the detail.');
+      var endpoint = form.getAttribute('action');
+      if (!endpoint || typeof fetch !== 'function') {
+        form.submit();            // no endpoint or no fetch: let the browser post
         return;
       }
 
-      window.location.href = href;
-      bind('buttonLabel', 'Opening your mail app');
-      // mailto: fails silently when no mail client is registered — which is the
-      // normal case for webmail-only machines — so always surface the address.
-      bind('statusNote', 'Your mail app should be opening with the message ready. ' +
-        'If nothing happened, send it to ' + INBOX + ' instead.');
+      var data = new FormData(form);
+      data.set('_subject', topic ? topic + ' — ' + name : 'Portfolio enquiry — ' + name);
+
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) btn.disabled = true;
+      bind('buttonLabel', 'Sending…');
+      bind('statusNote', 'Sending your message…');
+
+      fetch(endpoint, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' }
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; })
+          .then(function (json) { return { ok: res.ok, json: json }; });
+      }).then(function (r) {
+        if (!r.ok) throw r.json;
+        form.reset();
+        if (btn) btn.disabled = false;
+        bind('buttonLabel', 'Sent');
+        bind('statusNote', 'Thank you — that reached my inbox. I reply within a day.');
+      }).catch(function (err) {
+        if (btn) btn.disabled = false;
+        bind('buttonLabel', 'Send message');
+        // Report what the endpoint actually objected to when it says; otherwise
+        // hand over the address so a failure is never a dead end.
+        var detail = err && err.errors && err.errors.length
+          ? err.errors.map(function (x) { return x.message; }).join(' ')
+          : '';
+        bind('statusNote', detail
+          ? detail + ' You can also email me at ' + INBOX + '.'
+          : 'That did not go through — the network or the form service may be down. ' +
+            'Please email me at ' + INBOX + ' instead.');
+      });
     });
   }
 
