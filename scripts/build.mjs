@@ -1,10 +1,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // Resolved from this file, not the cwd, and from the copy of the design package
 // vendored into the repo — so a fresh clone can rebuild without the original
 // handoff folder being present on the machine.
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname.slice(1)), '..');
+// Must be fileURLToPath, not `new URL(...).pathname`: on Windows the pathname is
+// "/C:/x" and needs the leading slash stripped, but on Linux it is already "/x"
+// and stripping it yields a relative path that resolve() then appends to the cwd
+// — which is what doubled the path to /vercel/path0/vercel/path0 on deploy.
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'reference');
 const OUT = path.join(ROOT, 'public');
 const ASSETS = path.join(OUT, 'assets');   // images ship in the repo, already in place
