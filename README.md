@@ -49,13 +49,14 @@ so are `vercel.json`, `robots.txt` and `favicon.svg`.
 Framework preset **Other**, build command **empty**, output directory **`public`**.
 `vercel.json` already sets `cleanUrls`, so `/about` serves `about.html`.
 
-### Once the real URL exists
+Live at **https://nikhil-portfolio-taupe-seven.vercel.app**
 
-1. Set `SITE` in `scripts/build.mjs` to the live domain, and replace the same
-   placeholder in `public/robots.txt` and `public/sitemap.xml`. These feed the
-   canonical tags, Open Graph URLs and the sitemap, so leaving the placeholder
-   points search engines and link previews at the wrong site.
-2. `npm run build`, commit, push. Vercel redeploys on push.
+### Moving to a custom domain
+
+Set `SITE` in `scripts/build.mjs` and rebuild. That one constant drives the
+canonical tags, the Open Graph URLs, `robots.txt` and `sitemap.xml` — the last
+two are generated, so do not hand-edit them in `public/`; a rebuild overwrites
+them. Then commit and push; Vercel redeploys on push.
 
 ### Changing the resume
 

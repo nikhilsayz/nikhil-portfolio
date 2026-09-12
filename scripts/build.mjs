@@ -48,9 +48,10 @@ const LINKS = {
   'Case-Curate-And-Craft.dc.html': '/curate-and-craft'
 };
 
-// The live site. Feeds canonical URLs, Open Graph and the sitemap — update this
-// to the real domain once Vercel has one, then rebuild.
-const SITE = 'https://nikhilkartikeya.vercel.app';
+// The live site. The single source of truth for canonical URLs, Open Graph,
+// robots.txt and sitemap.xml — all four are generated from it. Point this at a
+// custom domain and rebuild; nothing else needs touching.
+const SITE = 'https://nikhil-portfolio-taupe-seven.vercel.app';
 
 // The resume, linked from the nav, About and Contact. The reference files hard-code
 // one Drive id in three places; this rewrites all three, so changing the resume is
@@ -353,5 +354,28 @@ if (fs.existsSync(A_SRC)) {
   }
 }
 
+// robots.txt and sitemap.xml are generated from SITE and PAGES, not hand-kept,
+// so they cannot drift from the canonical URLs the pages themselves declare.
+const indexable = PAGES.filter((p) => !p.noindex);
+
+fs.writeFileSync(
+  path.join(OUT, 'robots.txt'),
+  ['User-agent: *', 'Allow: /', '', 'Sitemap: ' + SITE + '/sitemap.xml', ''].join('\n')
+);
+
+const lastmod = new Date().toISOString().slice(0, 10);
+fs.writeFileSync(
+  path.join(OUT, 'sitemap.xml'),
+  [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...indexable.map((p) =>
+      '  <url><loc>' + SITE + p.route + '</loc><lastmod>' + lastmod + '</lastmod></url>'),
+    '</urlset>',
+    ''
+  ].join('\n')
+);
+
 console.log(outputs.join('\n'));
 console.log('assets: ' + fs.readdirSync(ASSETS).length);
+console.log('sitemap: ' + indexable.length + ' urls at ' + SITE);
