@@ -58,7 +58,7 @@ const SITE = 'https://nikhil-design.vercel.app';
 // a one-line edit here rather than a hunt through generated HTML.
 // Note: re-uploading over the same Drive file (Manage versions -> Upload new
 // version) keeps the id, and then nothing here needs to change at all.
-const RESUME = 'https://drive.google.com/file/d/1J40op6vvfJNqpqjZOAl_rQUZBgSb73mV/view?usp=sharing';
+const RESUME = 'https://drive.google.com/file/d/12Xcnif-jiGb_rL7f9e71gKNghhMTj4G5/view?usp=sharing';
 
 // Written by scripts/cursors.mjs beside the PNGs, so the CSS hotspots can never
 // drift out of step with the artwork they belong to.
