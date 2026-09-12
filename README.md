@@ -14,14 +14,17 @@ public/                 ← the deployable site (Vercel output directory)
   peak-finance-labs.html        /peak-finance-labs
   curate-and-craft.html         /curate-and-craft
   app.js                shared runtime (nav, reveals, stepper, chapters)
-  assets/               49 images from the handoff
+  assets/               49 images, WebP (generated)
   assets/cursor/        cursor artwork + hotspots.json, generated
 reference/              the design handoff, vendored so the build is reproducible
+  assets/               the 49 image masters (PNG/JPEG), not deployed
   *.dc.html             the eight design files
   HANDOFF.md            the original spec: tokens, motion timings, responsive rules
 scripts/
   build.mjs             regenerates public/*.html from the reference files
   cursors.mjs           renders the cursor PNGs and writes hotspots.json
+  images.mjs            encodes reference/assets masters to WebP in public/assets
+  og-card.mjs           renders the 1200x630 link-preview card
   serve.mjs             local server that mirrors Vercel's cleanUrls behaviour
   audit.mjs             responsive audit — every route × 14 viewport widths
   shots.mjs             full-page screenshots for visual review
@@ -158,3 +161,28 @@ discarded server-side. `scripts/audit.mjs` skips it when checking tap-target
 sizes, along with anything `aria-hidden`, `tabindex="-1"` or at `opacity: 0`.
 
 To change the endpoint, edit `FORM_ENDPOINT` and rebuild.
+
+## Images
+
+`public/assets/` ships **WebP only, 3.1MB total** — down from 46.2MB of masters.
+The handoff saved photographs as lossless PNG (`ax-hero.png` was 4.2MB for
+1800×1372), so the win was the codec, not resizing; pixel dimensions are
+unchanged. Quality is per-kind, not one blanket number: gallery tiles 80, product
+and photography 84, diagrams 90, logo lockups 92 — flat colour bands at qualities
+photographs tolerate.
+
+The masters live in `reference/assets/` and are **not deployed**. To re-encode:
+
+```bash
+node scripts/images.mjs          # --check reports without writing
+node scripts/og-card.mjs         # the link-preview card
+npm run build
+```
+
+`build.mjs` rewrites `/assets/x.png` to `/assets/x.webp` and **throws if an
+encode is missing**, so a new master cannot ship as a broken image. The cursor
+PNGs under `/assets/cursor/` are deliberately left alone.
+
+The link-preview card is a designed 1200×630 JPEG, not a crop — the portrait is
+near-square and any cover-crop of it lands on an ear. JPEG because WebP support
+across social scrapers is still patchy.

@@ -247,6 +247,14 @@ function transform(page) {
     return m;
   });
 
+  // Serve the WebP encodes (see scripts/images.mjs). Only the flat asset images —
+  // the cursor PNGs live in /assets/cursor/ and must stay as they are.
+  body = body.replace(/\/assets\/([A-Za-z0-9_-]+)\.(png|jpe?g)\b/g, (m, name) => {
+    const webp = path.join(ASSETS, name + '.webp');
+    if (!fs.existsSync(webp)) throw new Error('missing webp for ' + name + ' (run scripts/images.mjs)');
+    return '/assets/' + name + '.webp';
+  });
+
   // lazy-load offscreen imagery (never the first plate on a page)
   let imgSeen = 0;
   body = body.replace(/<img\b[^>]*>/g, (tag) => {
@@ -348,7 +356,10 @@ function transform(page) {
     '  <meta property="og:title" content="' + page.title + '" />',
     '  <meta property="og:description" content="' + page.desc + '" />',
     '  <meta property="og:url" content="' + SITE + page.route + '" />',
-    '  <meta property="og:image" content="' + SITE + '/assets/nk-portrait.jpg" />',
+    '  <meta property="og:image" content="' + SITE + '/assets/og-cover.jpg" />',
+    '  <meta property="og:image:width" content="1200" />',
+    '  <meta property="og:image:height" content="630" />',
+    '  <meta property="og:image:alt" content="Nikhil Kartikeya, UI/UX and product designer" />',
     '  <meta name="twitter:card" content="summary_large_image" />',
     '  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />',
     '  <link rel="apple-touch-icon" href="/favicon.svg" />',
@@ -383,15 +394,11 @@ for (const p of PAGES) {
   outputs.push(p.out.padEnd(26) + (html.length / 1024).toFixed(1) + 'kb');
 }
 
-// Images live in public/assets in the repo. Re-copy them only if the original
-// handoff folder happens to be present; otherwise the committed copies stand.
-const A_SRC = path.join(SRC, 'assets');
+// The masters in reference/assets/ are deliberately NOT copied here: public/
+// ships only the WebP encodes, which scripts/images.mjs writes and which are
+// committed. Copying the masters in would put 46MB of unreferenced PNGs into
+// every deploy.
 fs.mkdirSync(ASSETS, { recursive: true });
-if (fs.existsSync(A_SRC)) {
-  for (const f of fs.readdirSync(A_SRC)) {
-    fs.copyFileSync(path.join(A_SRC, f), path.join(ASSETS, f));
-  }
-}
 
 // robots.txt and sitemap.xml are generated from SITE and PAGES, not hand-kept,
 // so they cannot drift from the canonical URLs the pages themselves declare.
