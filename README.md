@@ -141,3 +141,14 @@ no sub-24px tap targets, no console errors.
 Note: full-page screenshots from `shots.mjs` sometimes show reveal sections blank.
 That is a capture artifact — headless Chrome throttles the animation clock — not a
 site defect; verified against a real browser.
+
+## Contact form
+
+The form composes a `mailto:` — there is no server. Known limitation: **`mailto:`
+fails silently when the visitor has no mail client registered**, which is the
+normal case on a machine that only uses webmail. The status line therefore always
+names the inbox address as a fallback, and messages over ~1900 URL characters are
+refused up front rather than handed to a client that may truncate them.
+
+For delivery that does not depend on the visitor's setup, point the form at
+Formspree, Basin or Vercel Forms in `initContactForm()` (public/app.js).

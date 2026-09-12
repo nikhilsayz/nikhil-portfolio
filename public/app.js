@@ -510,31 +510,83 @@
     if (el) el.textContent = value;
   }
 
+  var INBOX = 'nikhilkalimahanthi@gmail.com';
+
   function initContactForm() {
     var form = $('form');
     if (!form) return;
+
+    var note = document.querySelector('[data-bind="statusNote"]');
+    if (note) {
+      // the status line is the only feedback this form gives, so announce it
+      note.setAttribute('role', 'status');
+      note.setAttribute('aria-live', 'polite');
+    }
+
     bind('buttonLabel', 'Send message');
-    bind('statusNote', 'Straight to my inbox — your mail client opens with the message ready to send. Replies within a day.');
-    form.setAttribute('novalidate', '');
+    bind('statusNote', 'Opens in your mail app with the message ready to send. Replies within a day.');
+
+    // mark the fields this form actually requires, so the browser and assistive
+    // tech agree with the check below
+    ['name', 'email', 'message'].forEach(function (n) {
+      var el = form.elements[n];
+      if (el) el.setAttribute('required', '');
+    });
+    form.setAttribute('novalidate', '');   // we report errors ourselves, one at a time
+
+    function fail(field, msg) {
+      bind('statusNote', msg);
+      var el = form.elements[field];
+      if (el) {
+        el.setAttribute('aria-invalid', 'true');
+        try { el.focus({ preventScroll: false }); } catch (err) { el.focus(); }
+      }
+      return false;
+    }
+
+    form.addEventListener('input', function (e) {
+      if (e.target && e.target.hasAttribute('aria-invalid')) e.target.removeAttribute('aria-invalid');
+    });
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var data = new FormData(form);
-      var get = function (k) { return (data.get(k) || '').toString().trim(); };
-      var name = get('name') || get('Name');
-      var email = get('email') || get('Email');
-      var message = get('message');
-      var topic = get('subject');
+      var get = function (k) {
+        var el = form.elements[k];
+        return el ? String(el.value || '').trim() : '';
+      };
+      var name = get('name'), email = get('email');
+      var message = get('message'), topic = get('subject');
 
-      if (!name || !email || !message) {
-        bind('statusNote', 'Please add your name, email and a short message first.');
+      if (!name) return fail('name', 'Your name, first — so I know who I am replying to.');
+      if (!email) return fail('email', 'I need an email address to reply to.');
+      // deliberately loose: something@something.something, no clever regex
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        return fail('email', 'That email address looks incomplete — check it and try again.');
+      }
+      if (!message) return fail('message', 'Add a line or two about what you have in mind.');
+
+      var subject = topic ? topic + ' — ' + name : 'Portfolio enquiry — ' + name;
+      var body = [message, '', '— ' + name, email].join('\n');
+      var href = 'mailto:' + INBOX +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+
+      // Some mail clients truncate or drop very long mailto URLs. Past a safe
+      // length, hand over the address instead of composing a mail that arrives
+      // cut in half.
+      if (href.length > 1900) {
+        bind('buttonLabel', 'Send message');
+        bind('statusNote', 'That is a long one — too long to hand to a mail app safely. ' +
+          'Please email it to ' + INBOX + ' directly, and thank you for the detail.');
         return;
       }
-      var subject = encodeURIComponent(topic ? topic + ' — ' + name : 'Portfolio enquiry — ' + name);
-      var lines = [message, '', '— ' + name, email];
-      var body = encodeURIComponent(lines.join('\n'));
-      window.location.href = 'mailto:nikhilkalimahanthi@gmail.com?subject=' + subject + '&body=' + body;
+
+      window.location.href = href;
       bind('buttonLabel', 'Opening your mail app');
-      bind('statusNote', 'Your mail client should be opening with the message ready. If nothing happens, write to nikhilkalimahanthi@gmail.com directly.');
+      // mailto: fails silently when no mail client is registered — which is the
+      // normal case for webmail-only machines — so always surface the address.
+      bind('statusNote', 'Your mail app should be opening with the message ready. ' +
+        'If nothing happened, send it to ' + INBOX + ' instead.');
     });
   }
 

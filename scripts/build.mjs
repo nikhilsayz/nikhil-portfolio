@@ -27,12 +27,15 @@ const PAGES = [
   { src: '404.dc.html', out: '404.html', route: '/404', noindex: true,
     title: 'Page not found — Nikhil Kartikeya', desc: 'That page does not exist.' },
   { src: 'Case-Foodzy.dc.html', out: 'foodzy.html', route: '/foodzy',
+    caseStudy: 'https://www.behance.net/gallery/248513493/Foodzy-App-UIUX-Case-Study',
     title: 'Foodzy — Case Study — Nikhil Kartikeya',
     desc: 'A campus cafeteria ordering app: research, information architecture, wireframes and the shipped interface.' },
   { src: 'Case-Apex.dc.html', out: 'apex.html', route: '/apex',
+    caseStudy: 'https://www.behance.net/gallery/249891129/APEX-Automotive-Web-Experience',
     title: 'Apex — Case Study — Nikhil Kartikeya',
     desc: 'A performance automotive configurator — brand, product surface and spec-sheet detail.' },
   { src: 'Case-Peak-Finance-Labs.dc.html', out: 'peak-finance-labs.html', route: '/peak-finance-labs',
+    caseStudy: 'https://www.behance.net/gallery/255582289/Peak-Finance-Labs',
     title: 'Peak Finance Labs — Case Study — Nikhil Kartikeya',
     desc: 'Identity system and product surfaces for a finance lab: mark construction, grid, contrast grades and dashboards.' },
   { src: 'Case-Curate-And-Craft.dc.html', out: 'curate-and-craft.html', route: '/curate-and-craft',
@@ -191,6 +194,22 @@ function transform(page) {
       t = addAttr(t, 'autocomplete', f[1]);
       return t;
     });
+  }
+
+  // Point the "read the entire case study" button at this project's own gallery.
+  // The reference sends all three to the generic Behance profile (Apex to an old
+  // Framer site), which makes the reader hunt for the piece they just read about.
+  // Curate & Craft has no button — the design says so, it is a logo-only piece.
+  {
+    const cta = /<a\b[^>]*data-cursor="Read in full"[^>]*>/;
+    const hasCta = cta.test(body);
+    if (page.caseStudy) {
+      if (!hasCta) throw new Error('case-study CTA not found in ' + page.src);
+      body = body.replace(cta, (tag) =>
+        tag.replace(/href="[^"]*"/, 'href="' + page.caseStudy + '"'));
+    } else if (hasCta) {
+      throw new Error('unexpected case-study CTA in ' + page.src + ' (no caseStudy set)');
+    }
   }
 
   // point every resume link at the current file
