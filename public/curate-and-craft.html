@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Curate & Craft Media — Case Study — Nikhil Kartikeya</title>
+  <meta name="description" content="A logo-only identity piece: four lockups, each on its true ground." />
+  <link rel="canonical" href="https://nikhilkartikeya.vercel.app/curate-and-craft" />
+  <meta name="theme-color" content="#0A0A0A" />
+  <meta name="color-scheme" content="dark" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nikhil Kartikeya" />
+  <meta property="og:title" content="Curate & Craft Media — Case Study — Nikhil Kartikeya" />
+  <meta property="og:description" content="A logo-only identity piece: four lockups, each on its true ground." />
+  <meta property="og:url" content="https://nikhilkartikeya.vercel.app/curate-and-craft" />
+  <meta property="og:image" content="https://nikhilkartikeya.vercel.app/assets/nk-portrait.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+  :root { --acc: #B3CF3C; --bg: #0A0A0A; --desk: #050505; --surface: #101010; --surface2: #111111; --ink: #F3F2EE; --ink2: #E4E3DC; --t1: #B9B8B1; --t2: #A5A49D; --mut: #86867E; --t3: #7C7C75; --t4: #4A4A46; --line: rgba(243,242,238,0.13); --line2: rgba(243,242,238,0.22); --line3: rgba(243,242,238,0.08); --stripe: rgba(243,242,238,0.055); --wash: rgba(243,242,238,0.035); --ghost: rgba(243,242,238,0.10); --scrim: rgba(10,10,10,0.92); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--desk); color: var(--ink); font-family: Archivo, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--acc); }
+  img { display: block; max-width: 100%; }
+  ::selection { background: var(--acc); color: #0A0A0A; }
+  @media (max-width: 900px) {
+    [data-nav-shell] { width: max-content !important; max-width: 100% !important; justify-content: flex-start !important; }
+    [data-nav] { justify-content: center !important; }
+  }
+  @media (max-width: 760px) {
+    [data-chiprow] { flex-wrap: nowrap !important; gap: 6px !important; width: 100% !important; max-width: 100% !important; }
+    [data-chip] { flex: 0 1 auto !important; min-width: 0 !important; min-height: 38px !important; padding: 0 11px !important; font-size: 8.5px !important; letter-spacing: 0.1em !important; }
+    [data-row] { grid-template-columns: 1fr !important; gap: 8px !important; }
+    [data-row] [data-row-arrow] { display: none !important; }
+    [data-marquee] { animation-duration: 34s !important; }
+  }
+  @media (max-width: 520px) {
+    [data-chiprow] { gap: 4px !important; }
+    [data-chip] { min-height: 34px !important; padding: 0 7px !important; font-size: 7.5px !important; letter-spacing: 0.04em !important; }
+    [data-footrow] { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; }
+    [data-footcol] { min-width: 0 !important; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (max-width: 640px) {
+    [data-row] { grid-template-columns: 1fr !important; gap: 8px !important; }
+    [data-row] [data-row-arrow] { display: none !important; }
+  }
+  @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  html { -webkit-tap-highlight-color: rgba(179,207,60,0.18); }
+  :root { --maxw: 1440px; }
+  [data-page] section:not(:has([data-marquee])):not(:has([data-herofield])),
+  [data-page] > footer > div:not([aria-hidden]):not([data-footer-marq]),
+  [data-page] > footer > a:not([data-footer-marq]) {
+    max-width: var(--maxw); margin-left: auto; margin-right: auto;
+  }
+  [data-page] section:has([data-herofield]) {
+    padding-left: max(clamp(16px, 3vw, 48px), calc((100% - var(--maxw)) / 2)) !important;
+    padding-right: max(clamp(16px, 3vw, 48px), calc((100% - var(--maxw)) / 2)) !important;
+  }
+  [data-page] form, [data-page] form label, [data-page] form > div { min-width: 0; }
+  [data-page] form input, [data-page] form textarea, [data-page] form select {
+    width: 100%; min-width: 0; max-width: 100%;
+  }
+  [data-page] a[href^="mailto:"], [data-page] a[href^="tel:"] { min-width: 0; overflow-wrap: anywhere; }
+  @media (min-width: 1600px) {
+    [data-rowdesc] { font-size: 17px !important; }
+    [data-rowmeta] { font-size: 11px !important; }
+    [data-hero] > p { font-size: 26px !important; }
+  }
+  @keyframes pageIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  [data-page] { animation: pageIn .55s cubic-bezier(.22,.7,.2,1) both; }
+  [data-page][data-leaving] { opacity: 0; transform: translateY(-14px); transition: opacity .35s cubic-bezier(.22,.7,.2,1), transform .4s cubic-bezier(.22,.7,.2,1); }
+  @media (prefers-reduced-motion: reduce) { [data-page] { animation: none; } [data-page][data-leaving] { opacity: 1; transform: none; } }
+  img { height: auto; }
+  :where(a, button, input, textarea, select):focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-herofield] > div, [data-footfield] > div, [data-marquee] { animation: none !important; }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    html, body {
+      cursor: url("/assets/cursor/arrow.png") 2 2, default;
+      cursor: -webkit-image-set(url("/assets/cursor/arrow.png") 1x, url("/assets/cursor/arrow@2x.png") 2x) 2 2, default;
+      cursor: image-set(url("/assets/cursor/arrow.png") 1x, url("/assets/cursor/arrow@2x.png") 2x) 2 2, default;
+    }
+    p, h1, h2, h3, h4, h5, h6, li, blockquote, figcaption, dd, dt, td, th, code, pre {
+      cursor: text;
+    }
+    a, a *, button, button *, summary, [role="button"], [role="button"] *,
+    [data-cursor], [data-step], [data-step] *, [data-exp], [data-exp] *,
+    input[type="submit"], input[type="button"], input[type="checkbox"], input[type="radio"], select {
+      cursor: url("/assets/cursor/hand.png") 9 2, pointer !important;
+      cursor: -webkit-image-set(url("/assets/cursor/hand.png") 1x, url("/assets/cursor/hand@2x.png") 2x) 9 2, pointer !important;
+      cursor: image-set(url("/assets/cursor/hand.png") 1x, url("/assets/cursor/hand@2x.png") 2x) 9 2, pointer !important;
+    }
+    input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+    textarea { cursor: text !important; }
+    :disabled, [aria-disabled="true"] { cursor: not-allowed !important; }
+  }
+
+  </style>
+</head>
+<body>
+<div data-film="" aria-hidden="true" style="position: fixed; inset: 0; z-index: 9997; pointer-events: none; background: radial-gradient(125% 95% at 50% 45%, transparent 46%, rgba(0,0,0,0.34) 80%, rgba(0,0,0,0.62) 100%);"></div>
+<div data-page="" style="min-height: 100vh; padding: clamp(0px, 2vw, 26px) clamp(0px, 2vw, 26px) 0; background: var(--desk); background-image: radial-gradient(circle at 50% 0%, rgba(179,207,60,0.07), transparent 58%);">
+
+  <div style="position: sticky; top: 0; z-index: 12; margin-bottom: clamp(10px, 1.6vw, 20px);">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 18px; padding: 6px clamp(14px, 2.4vw, 30px); border-radius: 999px; background: transparent; backdrop-filter: blur(12px); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;">
+      <a href="/" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px;"><span style="color: var(--acc);">&larr;</span> Index</a>
+      <span data-chapter="" style="color: var(--mut);">01 &mdash; Overview</span>
+      <a href="/contact" style="color: var(--acc); display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap;">Contact &nearr;</a>
+    </div>
+    <div style="height: 1px; background: var(--line3); margin: 0 clamp(14px, 2.4vw, 30px);">
+      <div data-progress="" style="height: 1px; width: 0%; background: var(--acc); transition: width .15s linear;"></div>
+    </div>
+  </div>
+
+  <article style="max-width: 1440px; margin: 0 auto; background: var(--bg); border: 1px solid var(--line); border-radius: clamp(6px, 1.4vw, 20px); box-shadow: 0 40px 120px rgba(0,0,0,0.75); overflow: hidden;">
+
+    <header style="padding: clamp(26px, 5.4vw, 88px) clamp(16px, 4vw, 76px) clamp(22px, 3.6vw, 52px);">
+      <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mut); flex-wrap: wrap;">
+        <span style="color: var(--acc);">//</span> Case 04 &nbsp;&middot;&nbsp; Logo design &nbsp;&middot;&nbsp; 2025
+      </div>
+      <h1 style="margin: clamp(12px, 2vw, 26px) 0 0; font-size: clamp(44px, 11vw, 190px); line-height: 0.82; font-weight: 800; font-stretch: 64%; letter-spacing: -0.038em; text-transform: uppercase;">Curate<br />&amp; Craft<br />Media<span style="color: var(--acc);">.</span></h1>
+      <p style="margin: clamp(16px, 2.2vw, 30px) 0 0; max-width: 34ch; font-size: clamp(18px, 2.1vw, 32px); line-height: 1.18; font-weight: 500; font-stretch: 88%; letter-spacing: -0.02em; text-wrap: pretty;">
+        One continuous line, three letters. A monogram for a marketing agency that works in monochrome.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: clamp(14px, 2.2vw, 36px); margin-top: clamp(26px, 4.4vw, 60px); padding-top: clamp(18px, 2.6vw, 32px); border-top: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.04em; line-height: 1.6;">
+        <div><div style="color: var(--mut); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9.5px; margin-bottom: 9px;">Role</div>Logo designer</div>
+        <div><div style="color: var(--mut); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9.5px; margin-bottom: 9px;">Deliverable</div>Monogram &amp; two lockups</div>
+        <div><div style="color: var(--mut); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9.5px; margin-bottom: 9px;">Client</div>Curate &amp; Craft Media</div>
+        <div><div style="color: var(--mut); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9.5px; margin-bottom: 9px;">Sector</div>Marketing agency</div>
+        <div><div style="color: var(--mut); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9.5px; margin-bottom: 9px;">Palette</div><span style="color: var(--acc);">Monochrome, 4 steps</span></div>
+      </div>
+    </header>
+
+    <div style="padding: 0 clamp(16px, 4vw, 76px);">
+      <div style="border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #000000;">
+        <img src="/assets/cc-horiz-rev.png" alt="Curate and Craft Media — horizontal lockup, reversed" style="width: 100%; max-width: 720px; height: auto; margin: 0 auto; padding: clamp(18px, 4vw, 52px) clamp(14px, 3vw, 40px);" />
+      </div>
+    </div>
+
+    <section data-sec="01 &mdash; Overview" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: clamp(20px, 3.6vw, 68px); padding: clamp(36px, 6.4vw, 100px) clamp(16px, 4vw, 76px) 0;">
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px;">01 &mdash; Overview</div>
+        <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 52px); line-height: 0.96; font-weight: 700; font-stretch: 74%; letter-spacing: -0.03em;">The brief</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: clamp(16px, 2.2vw, 26px);">
+        <p style="margin: 0; font-size: clamp(15px, 1.3vw, 20px); line-height: 1.5; color: var(--ink2); text-wrap: pretty; border-left: 2px solid rgba(179,207,60,0.4); padding-left: 18px;">
+          A mark for an agency handling social media, content creation, ad campaigns, lead generation and offline marketing &mdash; work that has to sit under a client&rsquo;s brand without competing with it.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden;">
+          <div style="background: var(--bg); padding: clamp(14px, 1.8vw, 22px);">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mut); margin-bottom: 8px;">Services</div>
+            <div style="font-size: clamp(14px, 1.2vw, 17px); line-height: 1.5;">Social, content, ads, lead gen, offline</div>
+          </div>
+          <div style="background: var(--bg); padding: clamp(14px, 1.8vw, 22px);">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mut); margin-bottom: 8px;">Direction</div>
+            <div style="font-size: clamp(14px, 1.2vw, 17px); line-height: 1.5;">Monochrome &amp; sleek &mdash; minimal, timeless</div>
+          </div>
+          <div style="background: var(--bg); padding: clamp(14px, 1.8vw, 22px);">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mut); margin-bottom: 8px;">My part</div>
+            <div style="font-size: clamp(14px, 1.2vw, 17px); line-height: 1.5;">The logo only</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-sec="02 &mdash; The mark" style="padding: clamp(36px, 6.4vw, 100px) clamp(16px, 4vw, 76px) 0;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px;">02 &mdash; The mark</div>
+      <h2 style="margin: 0 0 clamp(14px, 2vw, 24px); font-size: clamp(26px, 3.4vw, 52px); line-height: 0.96; font-weight: 700; font-stretch: 74%; letter-spacing: -0.03em;">Two arcs that open into an M</h2>
+      <p style="margin: 0 0 clamp(18px, 2.6vw, 32px); max-width: 66ch; font-size: clamp(14px, 1.15vw, 17px); line-height: 1.6; color: var(--t1); text-wrap: pretty;">
+        Two concentric arcs read as C and C. The outer ring breaks at the upper right and folds inward to form the M&rsquo;s apex, so the third letter is made from the gap rather than added beside it. Nothing overlaps &mdash; the counters stay open, which is what keeps the mark legible when it shrinks to a profile picture.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: clamp(12px, 2vw, 24px);">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #000000;">
+            <img decoding="async" loading="lazy" src="/assets/cc-stack-rev.png" alt="Stacked lockup reversed on black" style="width: 100%; max-width: 340px; height: auto; margin: 0 auto; padding: clamp(14px, 2.4vw, 26px);" />
+          </div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; line-height: 1.8; color: var(--t3);">Stacked &mdash; reversed. The default for avatars and dark placements.</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #FFFFFF;">
+            <img decoding="async" loading="lazy" src="/assets/cc-stack-pos.png" alt="Stacked lockup on white" style="width: 100%; max-width: 340px; height: auto; margin: 0 auto; padding: clamp(14px, 2.4vw, 26px);" />
+          </div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; line-height: 1.8; color: var(--t3);">Stacked &mdash; positive. Same weights, no optical correction needed.</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-sec="03 &mdash; Lockups" style="padding: clamp(36px, 6.4vw, 100px) clamp(16px, 4vw, 76px) 0;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px;">03 &mdash; Lockups</div>
+      <h2 style="margin: 0 0 clamp(14px, 2vw, 24px); font-size: clamp(26px, 3.4vw, 52px); line-height: 0.96; font-weight: 700; font-stretch: 74%; letter-spacing: -0.03em;">Two orientations, one set of proportions</h2>
+      <p style="margin: 0 0 clamp(18px, 2.6vw, 32px); max-width: 66ch; font-size: clamp(14px, 1.15vw, 17px); line-height: 1.6; color: var(--t1); text-wrap: pretty;">
+        Stacked for square spaces, horizontal for headers and signatures. In the horizontal lockup the name sets in three lines so its block matches the monogram&rsquo;s height &mdash; the ampersand becomes &ldquo;and&rdquo; because a symbol at that size fights the mark&rsquo;s own geometry.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: clamp(12px, 1.6vw, 18px);">
+        <div style="border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #FFFFFF;">
+          <img decoding="async" loading="lazy" src="/assets/cc-horiz-pos.png" alt="Horizontal lockup on white" style="width: 100%; max-width: 720px; height: auto; margin: 0 auto; padding: clamp(18px, 4vw, 52px) clamp(14px, 3vw, 40px);" />
+        </div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; line-height: 1.8; color: var(--t3);">Horizontal &mdash; positive. Name left-aligned to the monogram&rsquo;s optical centre.</div>
+      </div>
+    </section>
+
+    <section data-sec="04 &mdash; Palette" style="padding: clamp(36px, 6.4vw, 100px) clamp(16px, 4vw, 76px) 0;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px;">04 &mdash; Palette</div>
+      <h2 style="margin: 0 0 clamp(14px, 2vw, 24px); font-size: clamp(26px, 3.4vw, 52px); line-height: 0.96; font-weight: 700; font-stretch: 74%; letter-spacing: -0.03em;">Monochrome &amp; sleek</h2>
+      <p style="margin: 0 0 clamp(18px, 2.6vw, 32px); max-width: 66ch; font-size: clamp(14px, 1.15vw, 17px); line-height: 1.6; color: var(--t1); text-wrap: pretty;">
+        Four steps, no hue. An agency&rsquo;s mark appears next to client work constantly, and a colour of its own would clash with half of it. Black and white carry the logo; the two greys exist for supporting type and dividers.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: clamp(10px, 1.4vw, 16px);">
+        <div>
+          <div style="height: clamp(90px, 9vw, 130px); background: #000000; border: 1px solid var(--line); border-radius: 3px;"></div>
+          <div style="margin-top: 12px; font-size: clamp(14px, 1.15vw, 17px); font-weight: 600; font-stretch: 84%;">Pure Black</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--acc); margin-top: 5px;">#000000</div>
+        </div>
+        <div>
+          <div style="height: clamp(90px, 9vw, 130px); background: #2C2C2C; border: 1px solid var(--line); border-radius: 3px;"></div>
+          <div style="margin-top: 12px; font-size: clamp(14px, 1.15vw, 17px); font-weight: 600; font-stretch: 84%;">Dark Gray</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--acc); margin-top: 5px;">#2C2C2C</div>
+        </div>
+        <div>
+          <div style="height: clamp(90px, 9vw, 130px); background: #B0B0B0; border: 1px solid var(--line); border-radius: 3px;"></div>
+          <div style="margin-top: 12px; font-size: clamp(14px, 1.15vw, 17px); font-weight: 600; font-stretch: 84%;">Cool Gray</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--acc); margin-top: 5px;">#B0B0B0</div>
+        </div>
+        <div>
+          <div style="height: clamp(90px, 9vw, 130px); background: #FFFFFF; border: 1px solid var(--line); border-radius: 3px;"></div>
+          <div style="margin-top: 12px; font-size: clamp(14px, 1.15vw, 17px); font-weight: 600; font-stretch: 84%;">Crisp White</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--acc); margin-top: 5px;">#FFFFFF</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-sec="05 &mdash; Decisions" style="padding: clamp(36px, 6.4vw, 100px) clamp(16px, 4vw, 76px) 0;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px;">05 &mdash; Decisions</div>
+      <h2 style="margin: 0 0 clamp(16px, 2.4vw, 30px); font-size: clamp(26px, 3.4vw, 52px); line-height: 0.96; font-weight: 700; font-stretch: 74%; letter-spacing: -0.03em;">Three calls behind the mark</h2>
+      <div style="border-top: 1px solid var(--line);">
+        <div data-row="" style="display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(10px, 2vw, 28px); padding: clamp(14px, 2vw, 24px) 0; border-bottom: 1px solid var(--line); align-items: baseline;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--acc);">01</span>
+          <span style="font-size: clamp(15px, 1.4vw, 20px); font-weight: 600; font-stretch: 84%; letter-spacing: -0.018em; line-height: 1.3;">Single stroke weight throughout</span>
+          <span style="font-size: clamp(12.5px, 1.05vw, 15px); line-height: 1.6; color: var(--t2);">Both arcs and the M share one line thickness, so the monogram reads as one drawn gesture rather than three letters assembled.</span>
+        </div>
+        <div data-row="" style="display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(10px, 2vw, 28px); padding: clamp(14px, 2vw, 24px) 0; border-bottom: 1px solid var(--line); align-items: baseline;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--acc);">02</span>
+          <span style="font-size: clamp(15px, 1.4vw, 20px); font-weight: 600; font-stretch: 84%; letter-spacing: -0.018em; line-height: 1.3;">The break does the work</span>
+          <span style="font-size: clamp(12.5px, 1.05vw, 15px); line-height: 1.6; color: var(--t2);">Opening the outer ring at the top right creates the M without adding a shape. The negative space carries a letter, which is what makes the mark worth a second look.</span>
+        </div>
+        <div data-row="" style="display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(10px, 2vw, 28px); padding: clamp(14px, 2vw, 24px) 0; border-bottom: 1px solid var(--line); align-items: baseline;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--acc);">03</span>
+          <span style="font-size: clamp(15px, 1.4vw, 20px); font-weight: 600; font-stretch: 84%; letter-spacing: -0.018em; line-height: 1.3;">No colour of its own</span>
+          <span style="font-size: clamp(12.5px, 1.05vw, 15px); line-height: 1.6; color: var(--t2);">Monochrome is a working constraint, not a mood. The mark has to sit beside client campaigns in every palette without arguing with them.</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-sec="06 &mdash; Scope" style="padding: clamp(36px, 6.4vw, 100px) clamp(16px, 4vw, 76px) 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: clamp(20px, 3.6vw, 68px);">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px;">06 &mdash; Scope</div>
+          <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 52px); line-height: 0.96; font-weight: 700; font-stretch: 74%; letter-spacing: -0.03em;">What this is, and isn&rsquo;t</h2>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: clamp(14px, 1.8vw, 20px);">
+          <p style="margin: 0; font-size: clamp(15px, 1.25vw, 19px); line-height: 1.55; color: var(--ink2); text-wrap: pretty;">
+            My contribution here is the logo: the monogram, the two lockups and the monochrome palette it lives in. No brand guidelines, no collateral, no product work.
+          </p>
+          <p style="margin: 0; font-size: clamp(13px, 1.1vw, 16px); line-height: 1.6; color: var(--t2); text-wrap: pretty;">
+            It is on the site because a mark that has to survive at avatar scale, in positive and reverse, with a single stroke weight, is a specific discipline &mdash; and it&rsquo;s worth showing that discipline on its own rather than padding it into a case study it isn&rsquo;t.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <nav style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px 20px; margin: clamp(44px, 7vw, 120px) clamp(16px, 4vw, 76px) clamp(28px, 4.4vw, 64px); padding-top: clamp(20px, 2.8vw, 38px); border-top: 1px solid var(--line);">
+      <a href="/" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mut); display: inline-flex; align-items: center; min-height: 44px;">&larr; All work</a>
+      <a href="/foodzy" style="display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 16px; min-height: 44px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc);">Next</span>
+        <span style="font-size: clamp(22px, 3.4vw, 52px); font-weight: 800; font-stretch: 68%; letter-spacing: -0.03em; text-transform: uppercase; line-height: 0.95;">Foodzy &nearr;</span>
+      </a>
+    </nav>
+  </article>
+
+  <footer style="max-width: 1440px; margin: clamp(16px, 2.4vw, 30px) auto 0; position: relative; overflow: hidden;">
+    <a href="/contact" data-footer-marq="" style="display: block; padding: clamp(11px, 1.4vw, 15px) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden;">
+      <div data-marquee="" style="display: flex; width: max-content; animation: marq 26s linear infinite;">
+        <div data-fill-row="" style="display: flex; align-items: center; gap: 20px; padding-right: 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #F3F2EE; white-space: nowrap; transition: color .45s ease;">
+          <span style="display: inline-flex; align-items: center; gap: 9px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: var(--acc); flex: 0 0 auto;"></span>Open to work</span>
+          <span style="color: var(--acc);">/</span><span>Let&rsquo;s work together</span>
+          <span style="color: var(--acc);">/</span><span>Hyderabad, IN</span>
+          <span style="color: var(--acc);">/</span><span>nikhilkalimahanthi@gmail.com</span>
+          <span style="color: var(--acc);">/</span><span>Replies within a day</span>
+          <span style="color: var(--acc);">/</span>
+        </div>
+        <div data-fill-row="" style="display: flex; align-items: center; gap: 20px; padding-right: 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #F3F2EE; white-space: nowrap; transition: color .45s ease;">
+          <span style="display: inline-flex; align-items: center; gap: 9px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: var(--acc); flex: 0 0 auto;"></span>Open to work</span>
+          <span style="color: var(--acc);">/</span><span>Let&rsquo;s work together</span>
+          <span style="color: var(--acc);">/</span><span>Hyderabad, IN</span>
+          <span style="color: var(--acc);">/</span><span>nikhilkalimahanthi@gmail.com</span>
+          <span style="color: var(--acc);">/</span><span>Replies within a day</span>
+          <span style="color: var(--acc);">/</span>
+        </div>
+      </div>
+    </a>
+    <div data-footrow="" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 20px; padding: clamp(16px, 2.4vw, 28px) clamp(10px, 2vw, 20px) clamp(6px, 1vw, 12px); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; color: var(--mut);">
+      <span>&copy; 2026 Nikhil Kartikeya</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px 20px;">
+        <a href="https://www.behance.net/sainikhilkartikeya" target="_blank" style="display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap; color: var(--ink);">Behance</a>
+        <a href="https://www.linkedin.com/in/nikhil-kartikeya-kalimahanthi" target="_blank" style="display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap; color: var(--ink);">LinkedIn</a>
+        <a href="mailto:nikhilkalimahanthi@gmail.com" style="display: inline-flex; align-items: center; min-height: 44px; word-break: break-word; color: var(--ink);">Email</a>
+      </div>
+      <a href="/about" style="display: inline-flex; align-items: center; min-height: 44px;">About</a>
+    </div>
+  </footer>
+</div>
+<script src="/app.js" defer></script>
+</body>
+</html>

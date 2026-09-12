@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Apex — Case Study — Nikhil Kartikeya</title>
+  <meta name="description" content="A performance automotive configurator — brand, product surface and spec-sheet detail." />
+  <link rel="canonical" href="https://nikhilkartikeya.vercel.app/apex" />
+  <meta name="theme-color" content="#0A0A0A" />
+  <meta name="color-scheme" content="dark" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nikhil Kartikeya" />
+  <meta property="og:title" content="Apex — Case Study — Nikhil Kartikeya" />
+  <meta property="og:description" content="A performance automotive configurator — brand, product surface and spec-sheet detail." />
+  <meta property="og:url" content="https://nikhilkartikeya.vercel.app/apex" />
+  <meta property="og:image" content="https://nikhilkartikeya.vercel.app/assets/nk-portrait.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+
+  :root { --acc: #B3CF3C; --bg: #0A0A0A; --desk: #050505; --surface: #101010; --surface2: #111111; --ink: #F3F2EE; --ink2: #E4E3DC; --t1: #B9B8B1; --t2: #A5A49D; --mut: #86867E; --t3: #7C7C75; --t4: #4A4A46; --line: rgba(243,242,238,0.13); --line2: rgba(243,242,238,0.22); --line3: rgba(243,242,238,0.08); --stripe: rgba(243,242,238,0.055); --wash: rgba(243,242,238,0.035); --ghost: rgba(243,242,238,0.10); --scrim: rgba(10,10,10,0.92); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--desk); color: var(--ink); font-family: Archivo, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--acc); }
+  img { display: block; max-width: 100%; }
+  ::selection { background: var(--acc); color: #0A0A0A; }
+  @media (max-width: 900px) {
+    [data-nav-shell] { width: max-content !important; max-width: 100% !important; justify-content: flex-start !important; }
+    [data-nav] { justify-content: center !important; }
+  }
+  @media (max-width: 760px) {
+    [data-chiprow] { flex-wrap: nowrap !important; gap: 6px !important; width: 100% !important; max-width: 100% !important; }
+    [data-chip] { flex: 0 1 auto !important; min-width: 0 !important; min-height: 38px !important; padding: 0 11px !important; font-size: 8.5px !important; letter-spacing: 0.1em !important; }
+    [data-row] { grid-template-columns: 1fr !important; gap: 8px !important; }
+    [data-row] [data-row-arrow] { display: none !important; }
+    [data-marquee] { animation-duration: 34s !important; }
+  }
+  @media (max-width: 520px) {
+    [data-chiprow] { gap: 4px !important; }
+    [data-chip] { min-height: 34px !important; padding: 0 7px !important; font-size: 7.5px !important; letter-spacing: 0.04em !important; }
+    [data-footrow] { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; }
+    [data-footcol] { min-width: 0 !important; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (max-width: 640px) {
+    [data-row] { grid-template-columns: 1fr !important; gap: 8px !important; }
+    [data-row] [data-row-arrow] { display: none !important; }
+  }
+  @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  html { -webkit-tap-highlight-color: rgba(179,207,60,0.18); }
+  :root { --maxw: 1440px; }
+  [data-page] section:not(:has([data-marquee])):not(:has([data-herofield])),
+  [data-page] > footer > div:not([aria-hidden]):not([data-footer-marq]),
+  [data-page] > footer > a:not([data-footer-marq]) {
+    max-width: var(--maxw); margin-left: auto; margin-right: auto;
+  }
+  [data-page] section:has([data-herofield]) {
+    padding-left: max(clamp(16px, 3vw, 48px), calc((100% - var(--maxw)) / 2)) !important;
+    padding-right: max(clamp(16px, 3vw, 48px), calc((100% - var(--maxw)) / 2)) !important;
+  }
+  [data-page] form, [data-page] form label, [data-page] form > div { min-width: 0; }
+  [data-page] form input, [data-page] form textarea, [data-page] form select {
+    width: 100%; min-width: 0; max-width: 100%;
+  }
+  [data-page] a[href^="mailto:"], [data-page] a[href^="tel:"] { min-width: 0; overflow-wrap: anywhere; }
+  @media (min-width: 1600px) {
+    [data-rowdesc] { font-size: 17px !important; }
+    [data-rowmeta] { font-size: 11px !important; }
+    [data-hero] > p { font-size: 26px !important; }
+  }
+  @keyframes pageIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  [data-page] { animation: pageIn .55s cubic-bezier(.22,.7,.2,1) both; }
+  [data-page][data-leaving] { opacity: 0; transform: translateY(-14px); transition: opacity .35s cubic-bezier(.22,.7,.2,1), transform .4s cubic-bezier(.22,.7,.2,1); }
+  @media (prefers-reduced-motion: reduce) { [data-page] { animation: none; } [data-page][data-leaving] { opacity: 1; transform: none; } }
+  img { height: auto; }
+  :where(a, button, input, textarea, select):focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-herofield] > div, [data-footfield] > div, [data-marquee] { animation: none !important; }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    html, body {
+      cursor: url("/assets/cursor/arrow.png") 2 2, default;
+      cursor: -webkit-image-set(url("/assets/cursor/arrow.png") 1x, url("/assets/cursor/arrow@2x.png") 2x) 2 2, default;
+      cursor: image-set(url("/assets/cursor/arrow.png") 1x, url("/assets/cursor/arrow@2x.png") 2x) 2 2, default;
+    }
+    p, h1, h2, h3, h4, h5, h6, li, blockquote, figcaption, dd, dt, td, th, code, pre {
+      cursor: text;
+    }
+    a, a *, button, button *, summary, [role="button"], [role="button"] *,
+    [data-cursor], [data-step], [data-step] *, [data-exp], [data-exp] *,
+    input[type="submit"], input[type="button"], input[type="checkbox"], input[type="radio"], select {
+      cursor: url("/assets/cursor/hand.png") 9 2, pointer !important;
+      cursor: -webkit-image-set(url("/assets/cursor/hand.png") 1x, url("/assets/cursor/hand@2x.png") 2x) 9 2, pointer !important;
+      cursor: image-set(url("/assets/cursor/hand.png") 1x, url("/assets/cursor/hand@2x.png") 2x) 9 2, pointer !important;
+    }
+    input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+    textarea { cursor: text !important; }
+    :disabled, [aria-disabled="true"] { cursor: not-allowed !important; }
+  }
+.hv-0:hover{background: var(--acc) !important; color: #0A0A0A !important;}
+  </style>
+</head>
+<body>
+<div data-film="" aria-hidden="true" style="position: fixed; inset: 0; z-index: 9997; pointer-events: none; background: radial-gradient(125% 95% at 50% 45%, transparent 46%, rgba(0,0,0,0.34) 80%, rgba(0,0,0,0.62) 100%);"></div>
+<div data-page="" style="min-height: 100vh; padding: clamp(0px, 2vw, 26px) clamp(0px, 2vw, 26px) 0; background: var(--desk); background-image: radial-gradient(circle at 50% 0%, rgba(179,207,60,0.07), transparent 58%);">
+
+  <div style="position: sticky; top: 0; z-index: 12; margin-bottom: clamp(10px, 1.6vw, 20px);">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 18px; padding: 6px clamp(14px, 2.4vw, 30px); border-radius: 999px; background: transparent; backdrop-filter: blur(12px); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;">
+      <a href="/" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px;"><span style="color: var(--acc);">&larr;</span> Index</a>
+      <span data-chapter="" style="color: var(--mut);">Spec 01 &mdash; Overview</span>
+      <a href="/contact" style="color: var(--acc); display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap;">Contact &nearr;</a>
+    </div>
+    <div style="height: 1px; background: var(--line3); margin: 0 clamp(14px, 2.4vw, 30px);">
+      <div data-progress="" style="height: 1px; width: 0%; background: var(--acc); transition: width .15s linear;"></div>
+    </div>
+  </div>
+
+  <article style="max-width: 1440px; margin: 0 auto; background: var(--bg); border: 1px solid var(--line); border-radius: clamp(6px, 1.4vw, 20px); box-shadow: 0 40px 120px rgba(0,0,0,0.75); overflow: hidden;">
+
+    <header style="padding: clamp(26px, 5.4vw, 88px) clamp(16px, 4vw, 76px) clamp(22px, 3.6vw, 52px);">
+      <div style="display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mut); flex-wrap: wrap;">
+        <span style="color: var(--acc);">//</span> Case 02 &nbsp;&middot;&nbsp; Restomod web experience &nbsp;&middot;&nbsp; 2026
+      </div>
+      <h1 style="margin: clamp(12px, 2vw, 26px) 0 0; font-size: clamp(52px, 13vw, 230px); line-height: 0.8; font-weight: 800; font-stretch: 64%; letter-spacing: -0.038em; text-transform: uppercase;">Apex<span style="color: var(--acc);">.</span></h1>
+      <p style="margin: clamp(16px, 2.2vw, 30px) 0 0; max-width: 32ch; font-size: clamp(18px, 2.1vw, 32px); line-height: 1.18; font-weight: 500; font-stretch: 88%; letter-spacing: -0.02em; text-wrap: pretty;">
+        Reclaiming the classic. A restomod web experience built for the modern automotive purist.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: clamp(14px, 2.2vw, 36px); margin-top: clamp(26px, 4.4vw, 60px); padding-top: clamp(18px, 2.6vw, 32px); border-top: 1px solid var(--line); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.04em; line-height: 1.6;">
+        <div><div style="color: var(--mut); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9.5px; margin-bottom: 9px;">Role</div>Sole designer</div>
+        <div><div style="color: var(--mut); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9.5px; margin-bottom: 9px;">Scope</div>Concept, UI, motion system</div>
+        <div><div style="color: var(--mut); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9.5px; margin-bottom: 9px;">Type</div>Self-initiated concept</div>
+        <div><div style="color: var(--mut); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9.5px; margin-bottom: 9px;">Subject</div>Solid-state restomod &middot; 1969</div>
+        <div><div style="color: var(--mut); letter-spacing: 0.18em; text-transform: uppercase; font-size: 9.5px; margin-bottom: 9px;">Canvas</div><span style="color: var(--acc);">9:16 cinematic grid</span></div>
+      </div>
+    </header>
+
+    <div style="padding: 0 clamp(16px, 4vw, 76px);">
+      <div style="border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #060606;">
+        <img src="/assets/ax-hero.png" alt="Apex — Reclaiming the classic. Spec 01, restomod web experience" style="width: 100%; height: auto;" />
+      </div>
+    </div>
+
+    <section data-sec="Spec 02 &mdash; Project vision" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: clamp(20px, 3.6vw, 68px); padding: clamp(36px, 6.4vw, 100px) clamp(16px, 4vw, 76px) 0;">
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px;">Spec 02 &mdash; Project vision</div>
+        <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 52px); line-height: 0.96; font-weight: 700; font-stretch: 74%; letter-spacing: -0.03em;">An exploration of friction</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: clamp(16px, 2.2vw, 26px);">
+        <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: clamp(14px, 1.2vw, 18px); line-height: 1.7; color: var(--ink2); text-wrap: pretty; border-left: 2px solid rgba(179,207,60,0.4); padding-left: 18px;">
+          &ldquo;Apex is an exploration of friction&mdash;where classic automotive heritage meets cutting-edge digital interaction. This project bridges the gap between raw mechanical engineering and elite UI/UX design, creating an immersive web experience for the modern automotive purist.&rdquo;
+        </p>
+      </div>
+    </section>
+
+    <section data-sec="Spec 02 &mdash; Project vision" style="padding: clamp(30px, 5vw, 74px) clamp(16px, 4vw, 76px) 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr)); gap: clamp(16px, 2.6vw, 44px); padding-top: clamp(18px, 2.6vw, 32px); border-top: 1px solid var(--line);">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mut); margin-bottom: 14px;">[01 / System typeface]</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: clamp(13px, 1.15vw, 16px); line-height: 1.7; color: var(--ink2);">Space Grotesk Bold /<br />JetBrains Mono Regular</div>
+        </div>
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mut); margin-bottom: 14px;">[02 / Chromatic matrix]</div>
+          <div style="display: flex; gap: 8px;">
+            <span style="width: 34px; height: 34px; background: #0A0A0A; border: 1px solid var(--line2); flex: 0 0 auto;"></span>
+            <span style="width: 34px; height: 34px; background: #E8E6E1; flex: 0 0 auto;"></span>
+            <span style="width: 34px; height: 34px; background: #E23B3B; flex: 0 0 auto;"></span>
+          </div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.7; color: var(--t3); margin-top: 12px;">Void &middot; Bone &middot; Signal red</div>
+        </div>
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mut); margin-bottom: 14px;">[03 / System canvas]</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: clamp(13px, 1.15vw, 16px); line-height: 1.7; color: var(--ink2);">9:16 Cinematic Grid /<br />Scroll-Triggered UI Layout</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-sec="Spec 03 &mdash; Visual architecture" style="padding: clamp(36px, 6.4vw, 100px) clamp(16px, 4vw, 76px) 0;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px;">Spec 03 &mdash; Visual architecture</div>
+      <h2 style="margin: 0 0 clamp(16px, 2.4vw, 30px); font-size: clamp(26px, 3.4vw, 52px); line-height: 0.96; font-weight: 700; font-stretch: 74%; letter-spacing: -0.03em;">Shot like the machine, not like a catalogue</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: clamp(12px, 2vw, 28px); align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #060606;">
+            <img decoding="async" loading="lazy" src="/assets/ax-profile.png" alt="Rear three-quarter profile — matte body, forged wheel" style="width: 100%; height: auto;" />
+          </div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; line-height: 1.8; color: var(--t3);">Form &mdash; the silhouette carried in near-black, edges read by light alone.</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: clamp(0px, 6vw, 90px);">
+          <div style="border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #060606;">
+            <img decoding="async" loading="lazy" src="/assets/ax-wheel.png" alt="Brake and wheel detail — carbon-ceramic disc, teal caliper" style="width: 100%; height: auto;" />
+          </div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; line-height: 1.8; color: var(--t3);">Detail &mdash; engineering shown close enough to feel machined.</div>
+        </div>
+      </div>
+      <p style="margin: clamp(18px, 2.6vw, 34px) 0 0; max-width: 66ch; font-size: clamp(13px, 1.1vw, 16px); line-height: 1.6; color: var(--t2); text-wrap: pretty;">
+        Two frames, deliberately offset rather than aligned in a tidy row. The vertical stagger is how a scroll-driven page actually reveals imagery &mdash; one plate arrives, then the next enters from below it.
+      </p>
+    </section>
+
+    <section data-sec="Spec 04 &mdash; Interactive framework" style="padding: clamp(36px, 6.4vw, 100px) clamp(16px, 4vw, 76px) 0;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px;">Spec 04 &mdash; Interactive framework</div>
+      <h2 style="margin: 0 0 clamp(16px, 2.4vw, 30px); font-size: clamp(26px, 3.4vw, 52px); line-height: 0.96; font-weight: 700; font-stretch: 74%; letter-spacing: -0.03em;">The configurator, in the browser</h2>
+      <div style="border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #060606;">
+        <img decoding="async" loading="lazy" src="/assets/ax-frame.png" alt="Apex configurator — solid-state restomod, 1969, with component callouts and descend cue" style="width: 100%; height: auto;" />
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: clamp(16px, 2.6vw, 44px); margin-top: clamp(18px, 2.6vw, 34px);">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mut); margin-bottom: 14px;">[01 / Real-time configurator]</div>
+          <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px, 1.05vw, 14px); line-height: 1.8; color: var(--t1); text-wrap: pretty;">
+            &ldquo;Apex is an exploration of friction&mdash;where classic automotive heritage meets cutting-edge digital interaction. This project bridges the gap between raw mechanical engineering and elite UI/UX design, creating an immersive web experience for the modern automotive purist.&rdquo;
+          </p>
+        </div>
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mut); margin-bottom: 14px;">[02 / Performance data HUD]</div>
+          <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: clamp(12px, 1.05vw, 14px); line-height: 1.8; color: var(--t1); text-wrap: pretty;">
+            &ldquo;Interactive data layout engine parsing live telemetry and engine specs. Designed with a custom monospace framework optimized for readability under dark-mode high-contrast user environments.&rdquo;
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section data-sec="Spec 05 &mdash; Decisions" style="padding: clamp(36px, 6.4vw, 100px) clamp(16px, 4vw, 76px) 0;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px;">Spec 05 &mdash; Decisions</div>
+      <h2 style="margin: 0 0 clamp(16px, 2.4vw, 30px); font-size: clamp(26px, 3.4vw, 52px); line-height: 0.96; font-weight: 700; font-stretch: 74%; letter-spacing: -0.03em;">Four calls the system rests on</h2>
+      <div style="border-top: 1px solid var(--line);">
+        <div data-row="" style="display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(10px, 2vw, 28px); padding: clamp(14px, 2vw, 24px) 0; border-bottom: 1px solid var(--line); align-items: baseline;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--acc);">01</span>
+          <span style="font-size: clamp(15px, 1.4vw, 20px); font-weight: 600; font-stretch: 84%; letter-spacing: -0.018em; line-height: 1.3;">Monospace for everything but the name</span>
+          <span style="font-size: clamp(12.5px, 1.05vw, 15px); line-height: 1.6; color: var(--t2);">JetBrains Mono reads as instrumentation rather than marketing copy. Space Grotesk Bold is reserved for the marque, so the two voices never compete.</span>
+        </div>
+        <div data-row="" style="display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(10px, 2vw, 28px); padding: clamp(14px, 2vw, 24px) 0; border-bottom: 1px solid var(--line); align-items: baseline;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--acc);">02</span>
+          <span style="font-size: clamp(15px, 1.4vw, 20px); font-weight: 600; font-stretch: 84%; letter-spacing: -0.018em; line-height: 1.3;">Three colours, one of them rationed</span>
+          <span style="font-size: clamp(12.5px, 1.05vw, 15px); line-height: 1.6; color: var(--t2);">Void and bone carry the entire interface. Signal red appears only where the system demands attention &mdash; never as decoration.</span>
+        </div>
+        <div data-row="" style="display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(10px, 2vw, 28px); padding: clamp(14px, 2vw, 24px) 0; border-bottom: 1px solid var(--line); align-items: baseline;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--acc);">03</span>
+          <span style="font-size: clamp(15px, 1.4vw, 20px); font-weight: 600; font-stretch: 84%; letter-spacing: -0.018em; line-height: 1.3;">Scroll is the only control</span>
+          <span style="font-size: clamp(12.5px, 1.05vw, 15px); line-height: 1.6; color: var(--t2);">No carousel, no tabs. A 9:16 cinematic grid keyed to scroll position, so the reveal sequence is authored rather than browsed.</span>
+        </div>
+        <div data-row="" style="display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(10px, 2vw, 28px); padding: clamp(14px, 2vw, 24px) 0; border-bottom: 1px solid var(--line); align-items: baseline;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--acc);">04</span>
+          <span style="font-size: clamp(15px, 1.4vw, 20px); font-weight: 600; font-stretch: 84%; letter-spacing: -0.018em; line-height: 1.3;">Spec labels, not headings</span>
+          <span style="font-size: clamp(12.5px, 1.05vw, 15px); line-height: 1.6; color: var(--t2);">Every section is numbered like a technical document. The page behaves like a spec sheet for the car, which is the point of the whole piece.</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-sec="Spec 06 &mdash; Reflection" style="padding: clamp(36px, 6.4vw, 100px) clamp(16px, 4vw, 76px) 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: clamp(20px, 3.6vw, 68px);">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc); margin-bottom: 14px;">Spec 06 &mdash; Reflection</div>
+          <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 52px); line-height: 0.96; font-weight: 700; font-stretch: 74%; letter-spacing: -0.03em;">Where it stands</h2>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: clamp(14px, 1.8vw, 20px);">
+          <p style="margin: 0; font-size: clamp(15px, 1.25vw, 19px); line-height: 1.55; color: var(--ink2); text-wrap: pretty;">
+            Apex is a visual and interaction study, not a shipped product. What it proves is that a restrained system &mdash; two typefaces, three colours, one scroll axis &mdash; can carry an experience usually attempted with far more moving parts.
+          </p>
+          <p style="margin: 0; font-size: clamp(13px, 1.1vw, 16px); line-height: 1.6; color: var(--t2); text-wrap: pretty;">
+            What I would build next: the configurator as a working prototype. Right now the interaction lives in a composited frame, and the real test of the data HUD is whether it stays readable while values change.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div style="display: flex; justify-content: center; padding: clamp(36px, 6vw, 92px) clamp(16px, 4vw, 76px) 0;">
+      <a class="hv-0" href="https://nikhilkartikeya.framer.website/" target="_blank" rel="noopener" data-cursor="Read in full" style="display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 60px; padding: 0 clamp(22px, 3.4vw, 46px); border: 1px solid var(--acc); border-radius: 999px; color: var(--acc); font-family: 'JetBrains Mono', monospace; font-size: clamp(11px, 1.15vw, 13px); letter-spacing: 0.16em; text-transform: uppercase; text-align: center; text-wrap: balance;">Click here to read the entire case study <span aria-hidden="true">&nearr;</span></a>
+    </div>
+
+    <nav style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px 20px; margin: clamp(44px, 7vw, 120px) clamp(16px, 4vw, 76px) clamp(28px, 4.4vw, 64px); padding-top: clamp(20px, 2.8vw, 38px); border-top: 1px solid var(--line);">
+      <a href="/" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mut); display: inline-flex; align-items: center; min-height: 44px;">&larr; All work</a>
+      <a href="/peak-finance-labs" style="display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 16px; min-height: 44px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--acc);">Next</span>
+        <span style="font-size: clamp(22px, 3.4vw, 52px); font-weight: 800; font-stretch: 68%; letter-spacing: -0.03em; text-transform: uppercase; line-height: 0.95;">Peak Finance &nearr;</span>
+      </a>
+    </nav>
+  </article>
+
+  <footer style="max-width: 1440px; margin: clamp(16px, 2.4vw, 30px) auto 0; position: relative; overflow: hidden;">
+    <a href="/contact" data-footer-marq="" style="display: block; padding: clamp(11px, 1.4vw, 15px) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden;">
+      <div data-marquee="" style="display: flex; width: max-content; animation: marq 26s linear infinite;">
+        <div data-fill-row="" style="display: flex; align-items: center; gap: 20px; padding-right: 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #F3F2EE; white-space: nowrap; transition: color .45s ease;">
+          <span style="display: inline-flex; align-items: center; gap: 9px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: var(--acc); flex: 0 0 auto;"></span>Open to work</span>
+          <span style="color: var(--acc);">/</span><span>Let&rsquo;s work together</span>
+          <span style="color: var(--acc);">/</span><span>Hyderabad, IN</span>
+          <span style="color: var(--acc);">/</span><span>nikhilkalimahanthi@gmail.com</span>
+          <span style="color: var(--acc);">/</span><span>Replies within a day</span>
+          <span style="color: var(--acc);">/</span>
+        </div>
+        <div data-fill-row="" style="display: flex; align-items: center; gap: 20px; padding-right: 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #F3F2EE; white-space: nowrap; transition: color .45s ease;">
+          <span style="display: inline-flex; align-items: center; gap: 9px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: var(--acc); flex: 0 0 auto;"></span>Open to work</span>
+          <span style="color: var(--acc);">/</span><span>Let&rsquo;s work together</span>
+          <span style="color: var(--acc);">/</span><span>Hyderabad, IN</span>
+          <span style="color: var(--acc);">/</span><span>nikhilkalimahanthi@gmail.com</span>
+          <span style="color: var(--acc);">/</span><span>Replies within a day</span>
+          <span style="color: var(--acc);">/</span>
+        </div>
+      </div>
+    </a>
+    <div data-footrow="" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 20px; padding: clamp(16px, 2.4vw, 28px) clamp(10px, 2vw, 20px) clamp(6px, 1vw, 12px); font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; color: var(--mut);">
+      <span>&copy; 2026 Nikhil Kartikeya</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px 20px;">
+        <a href="https://www.behance.net/sainikhilkartikeya" target="_blank" style="display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap; color: var(--ink);">Behance</a>
+        <a href="https://www.linkedin.com/in/nikhil-kartikeya-kalimahanthi" target="_blank" style="display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap; color: var(--ink);">LinkedIn</a>
+        <a href="mailto:nikhilkalimahanthi@gmail.com" style="display: inline-flex; align-items: center; min-height: 44px; word-break: break-word; color: var(--ink);">Email</a>
+      </div>
+      <a href="/about" style="display: inline-flex; align-items: center; min-height: 44px;">About</a>
+    </div>
+  </footer>
+</div>
+<script src="/app.js" defer></script>
+</body>
+</html>
