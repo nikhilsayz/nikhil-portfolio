@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nikhil-portfolio-taupe-seven.vercel.app/sitemap.xml
+Sitemap: https://nikhil-design.vercel.app/sitemap.xml

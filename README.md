@@ -46,10 +46,14 @@ so are `vercel.json`, `robots.txt` and `favicon.svg`.
 
 ## Deploying to Vercel
 
-Framework preset **Other**, build command **empty**, output directory **`public`**.
-`vercel.json` already sets `cleanUrls`, so `/about` serves `about.html`.
+`vercel.json` pins the whole deploy — framework, build command, output directory,
+install command, `cleanUrls`, cache and security headers — so it does not depend
+on the dashboard settings. Vercel otherwise falls back to `npm run build` even
+with the build command switched off, and the default install pulls
+devDependencies (puppeteer, i.e. a Chromium download) for a build that needs
+only Node builtins.
 
-Live at **https://nikhil-portfolio-taupe-seven.vercel.app**
+Live at **https://nikhil-design.vercel.app**
 
 ### Moving to a custom domain
 

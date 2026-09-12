@@ -51,7 +51,7 @@ const LINKS = {
 // The live site. The single source of truth for canonical URLs, Open Graph,
 // robots.txt and sitemap.xml — all four are generated from it. Point this at a
 // custom domain and rebuild; nothing else needs touching.
-const SITE = 'https://nikhil-portfolio-taupe-seven.vercel.app';
+const SITE = 'https://nikhil-design.vercel.app';
 
 // The resume, linked from the nav, About and Contact. The reference files hard-code
 // one Drive id in three places; this rewrites all three, so changing the resume is
